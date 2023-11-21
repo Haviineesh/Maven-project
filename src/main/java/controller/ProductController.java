@@ -1,4 +1,3 @@
-//ProductController
 package controller;
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +38,7 @@ public class ProductController {
 	
 	@GetMapping("/viewallproducts")
 	public String viewallproducts(Model model) {
-		List<Product> products = dbService.getProducts();
+		List<Product> products = dbService.getAllProducts();
 		model.addAttribute("products",products);
 		return "viewallproducts";
 	}
@@ -50,7 +49,7 @@ public class ProductController {
 		String name = request.getParameter("name");
 		//ask dbService for product detail based on product name
 		System.out.println("product name is: "+name);
-		Product product = dbService.getProductDetail(name);
+		Product product = dbService.getProductById(name);
 
 		if (product!=null) { //product exist
 			System.out.println("product exist : "+name);
@@ -72,4 +71,3 @@ public class ProductController {
 		return "editproduct";
 	}	
 }
-
