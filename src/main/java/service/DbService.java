@@ -27,6 +27,15 @@ public class DbService {
             new Product("prod etc", 30.75)
     ));
 
+    public void updateProduct(String name, Product updateProduct) {
+    	for (int i = 0; i < productList.size(); i++) {
+    		Product product = productList.get(i);
+    		if (product.getName().equalsIgnoreCase(name)) {
+    			productList.set(i, updateProduct);
+    			break;
+    		}
+    	}
+    }
     public void addProduct(Product product) {
         // Add the product to the static productList
         productList.add(product);
@@ -36,9 +45,21 @@ public class DbService {
         // Implement logic to retrieve all products
         return new ArrayList<Product>(productList);
     }
-
+    
+    public Product getProductByName(String name) {
+        for (Product product : productList) {
+            if (product.getName().equalsIgnoreCase(name)) {
+                return product;
+            }
+        }
+        return null; // Return null if no product with the given name is found
+    }
+//
+//    public Product getProductById(String name) {
+//        // Implement logic to retrieve a product by ID
+//        return null; //return the correct product based on name
+//    }
     public Product getProductById(String name) {
-        // Implement logic to retrieve a product by ID
-        return null; //return the correct product based on name
+        return getProductByName(name);
     }
 }
