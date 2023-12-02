@@ -1,29 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page import="entity.Product" %>
-    <%@ page import="java.util.Optional" %>
-<%@ page isELIgnored="false" %>
-    
+	pageEncoding="UTF-8"%>
+<%@ page import="entity.Product"%>
+<%@ page import="java.util.Optional"%>
+<%@ page isELIgnored="false"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Find product details</title>
 </head>
 <body>
-<h1>This is viewproductdetail page</h1>
-<%
-    Product product = (Product)request.getAttribute("product");
+	<h1>This is view product detail page</h1>
 
-    if (product!=null) {
-%>
-        <p>Product Name: <%= product.getName() %></p>
-        <p>Product Price: <%= product.getPrice() %></p>
-<%
-    } else {
-%>
-        <p>Product not found.</p>
-<%
-    }
-%></body>
+	<form action="viewproduct" method="post">
+		<label for="productName">Product Name:</label> <input type="text"
+			id="productName" name="name" required> <input type="submit"
+			value="View Product">
+	</form>
+	<%
+		Product product = (Product) request.getAttribute("product");
+
+		if (product != null) {
+	%>
+	<p>
+		Product Name:
+		<%=product.getName()%></p>
+	<p>
+		Product Price:
+		<%=product.getPrice()%></p>
+	<%
+		} else {
+	%>
+	<p>Product not found.</p>
+	<%
+		}
+	%>
+
+	<button onclick="window.location.href='';">Home</button>
+</body>
 </html>
